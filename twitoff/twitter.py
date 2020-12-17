@@ -20,29 +20,28 @@ def vectorize_tweet(tweet_text):
 
 def add_or_update_user(username):
     try:
-        """adds user with `username` to our database"""
+        """Adds user with username 'username' to our database"""
         twitter_user = TWITTER.get_user(username)
         db_user = (User.query.get(twitter_user.id)) or User(
-             id=twitter_user.id, name=username)
+            id=twitter_user.id, name=username)
         DB.session.add(db_user)
 
+        # TODO - fix assumption on continuously new tweets
         tweets = twitter_user.timeline(
-            count=200, exclude_replies=True, include_rts=False,
-            tweet_mode='Extended')
+            count=200, exclude_replies=True, include_rts=False, tweet_mode="extended")
 
-        # TODO - fix assumption on continously new tweets
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
 
         for tweet in tweets:
-            vectorized_tweet = vectorize_tweet(tweet.text)
-            db_tweet = Tweet(id=tweet.id, text=tweet.text,
+            vectorized_tweet = vectorize_tweet(tweet.full_text)
+            db_tweet = Tweet(id=tweet.id, text=tweet.full_text[0:300],
                              vect=vectorized_tweet)
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
-        print("error processing {}: {}".format(username, e))
+        print("Error processing {}: {}".format(username, e))
         raise e
 
     else:

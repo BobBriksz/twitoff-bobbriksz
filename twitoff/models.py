@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 DB = SQLAlchemy()
 MIGRATE = Migrate()
 
+
 # User Table
 class User(DB.Model):
     """Twitter users correspoding to tweets"""
