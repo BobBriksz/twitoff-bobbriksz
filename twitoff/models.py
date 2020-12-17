@@ -1,9 +1,10 @@
 """SQLAlchemy models and utility functions for Twitoff"""
 import random
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 DB = SQLAlchemy()
-
+MIGRATE = Migrate()
 
 # User Table
 class User(DB.Model):

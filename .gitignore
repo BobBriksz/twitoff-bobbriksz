@@ -1,3 +1,10 @@
+
+# ignoring specific file
+.DS_Store
+
+# ignore migrations dir
+migrations/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
