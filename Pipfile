@@ -7,8 +7,16 @@ name = "pypi"
 flask = "*"
 flask-sqlalchemy = "*"
 jinja2 = "*"
+tweepy = "*"
+flake8 = "*"
+spacy = "*"
+python-dotenv = "*"
+numpy = "==1.19.3"
+scipy = "*"
+scikit-learn = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.8.6"
