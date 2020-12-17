@@ -56,7 +56,7 @@ def create_app():
             tweets = User.query.filter(User.name == name).one().tweets
 
         except Exception as e:
-            message = "error handling{ }: {}".format(name, e)
+            message = "Error handling {}: {}".format(name, e)
             tweets = []
 
         return render_template("user.html", title=name, tweets=tweets, message=message)
